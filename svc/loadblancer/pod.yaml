@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: my-pod
+  name: myownpod
   labels:
     app: my-app
 spec:
   containers:
-    - name: my-container
+    - name: mydummy-container
       image: python
       ports:
         - containerPort: 5001
