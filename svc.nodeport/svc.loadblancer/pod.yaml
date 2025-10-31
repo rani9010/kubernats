@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    app: my-app
+spec:
+  containers:
+    - name: my-container
+      image: python
+      ports:
+        - containerPort: 5001
+          protocol: TCP
