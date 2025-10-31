@@ -1,13 +1,14 @@
-apiVersion: v1 
+apiVersion: v1
 kind: Pod
-metedata: 
-  name: svc-Pod
+metadata:
+  name: my-pod
   labels:
-    app: test
+    app: my-app
 spec:
   containers:
-    - name: test-containers
-      image:
+    - name: my-container
+      image: jenkins/jenkins
       ports:
-        ContainerPort: 8080
-        protocol: TCP    
+        - containerPort: 8080   
+          protocol: TCP
+  
