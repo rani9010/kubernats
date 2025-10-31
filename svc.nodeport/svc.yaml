@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: my-service
 spec:
-  type: ClusterIP
+  type: nodeport-svc
   selector:
     app: my-app
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 32000
       protocol: TCP
