@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mydemo-replicas
+  labels:
+    app: test-env
+  namespace: prod
+spec:
+  minReadySeconds: 5
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dev
+  template:
+    metadata:
+      name: mypod
+      labels:
+        app: dev
+    spec:
+      containers:
+        - name: mypod-image
+          image: nginx:1.29
+          ports:
+            - containerPort: 80
+          
