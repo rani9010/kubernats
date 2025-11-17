@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javaapp
+  namespace: dev
+  labels:
+    app: java
+spec:
+  minReadySeconds: 5
+  replicas: 4
+  selector:
+    matchLabels:
+      app: javapods
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata: 
+      labels:
+        app: javapods
+    spec:
+      containers:
+        - name: myjava-containers
+          image: 991860535950.dkr.ecr.ap-south-1.amazonaws.com/myapp/k8s
+          ports:
+            - containerPort: 80 
+          resources:
+            requests:
+              cpu: 120m
+              memory: 64Mi
+            limits:
+              cpu: 240m
+              memory: 128Mi
+          restartPolicy: Always
