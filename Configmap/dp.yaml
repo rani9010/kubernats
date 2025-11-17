@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javaapp
+  namespace: dev
+  labels:
+    app: java
+spec:
+  minReadySeconds: 5
+  replicas: 4
+  selector:
+    matchLabels:
+      app: javapods
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata: 
+      labels:
+        app: javapods
+    spec:
+      containers:
+        - name: myjava-container
+          image: longflew/ingress:YELLOWPAGE
+          ports:
+            - containerPort: 80
