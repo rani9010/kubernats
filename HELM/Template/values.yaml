@@ -1,0 +1,4 @@
+myimage: longflew/ingress:REDPAGE
+
+strategy:
+  dptype: RollingUpdate

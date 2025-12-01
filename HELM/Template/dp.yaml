@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydp
+  namespace: prod
+  annotations:
+    kubernetes.io/change-cause: 'this is myfirst version pods'
+spec:
+  minReadySeconds: 5
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myredapp
+  strategy:
+    type: {{.Values.strategy.dptype}}
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata: 
+      name: mypod
+      labels:
+        app: myredapp
+    spec:
+      containers:
+        - name: my-red-containers
+          image: {{.Values.myimage}}
+          ports:
+            - containerPort: 80
+              

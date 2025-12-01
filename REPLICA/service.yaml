@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: replicas-svc
+metadata:
+  name: myrp-pod
+spec:
+  type: nodeport-svc
+  selector:
+    app: dev
+  ports:
+    - containerPort: 80
+      
